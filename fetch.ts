@@ -7,7 +7,7 @@ const env = await load({
 const CURRENT_YEAR = env["CURRENT_YEAR"];
 const SESSION_COOKIE = 'session=' + env["SESSION_COOKIE"];
 
-const removeLeadingZero = (str: string | undefined): string => {
+export const removeLeadingZero = (str: string | undefined): string => {
     if (typeof str !== 'string') throw new Error('Input is not a string');
     return str.replace(/^0+/, '');
 }
@@ -37,7 +37,6 @@ export async function fetchAndReturnInput(foldername: string): Promise<string | 
         const encoder = new TextEncoder();
         const data = encoder.encode(text);
 
-        //await Deno.mkdir('../inputs/days/', { recursive: true });
         await Deno.writeFile(filepath, data);
 
         return text;
