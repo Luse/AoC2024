@@ -49,9 +49,6 @@ export const star_2 = (input: string): number => {
     const lineOne: number[] = [];
     const lineTwo: number[] = [];
     for (const line of input.split('\n')) {
-        if (line === '') {
-            continue;
-        }
         const newLine = parseInput(line);
         lineOne.push(newLine[0]);
         lineTwo.push(newLine[1]);
