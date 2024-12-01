@@ -49,9 +49,8 @@ export const star_2 = (input: string): number => {
     const lineOne: number[] = [];
     const lineTwo: number[] = [];
     for (const line of input.split('\n')) {
-        const newLine = parseInput(line);
-        lineOne.push(newLine[0]);
-        lineTwo.push(newLine[1]);
+        lineOne.push(parseInput(line)[0]);
+        lineTwo.push(parseInput(line)[1]);
     }
 
     const a = findSimilarityScore(lineOne, lineTwo);
