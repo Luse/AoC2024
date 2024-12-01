@@ -1,6 +1,7 @@
 import { slidingWindows } from '@std/collections/sliding-windows';
 import { withoutAll } from '@std/collections/without-all';
 import { sumOf } from '@std/collections/sum-of';
+import { zip } from "@std/collections/zip";
 
 const parseInput = (input: string): number[] => {
     return input.split(' ').map((x) => parseInt(x.replace('\n', ''), 10))
@@ -10,14 +11,10 @@ const parseInput = (input: string): number[] => {
 };
 
 const compareArrays = (arr1: number[], arr2: number[]): number => {
-    const slidingWindowOne = slidingWindows(arr1, 1);
-    const slidingWindowTwo = slidingWindows(arr2, 1);
-    let difference = 0;
-    slidingWindowOne.forEach((window, index) => {
-        const _difference = Math.abs(slidingWindowTwo[index][0] - window[0]);
-        difference += _difference;
-    });
-    return difference;
+    const zipped = zip(arr1, arr2);
+
+    const difference = zipped.map(([a, b]) => Math.abs(a - b));
+    return sumOf(difference, (x) => x);
 };
 
 const findSimilarityScores = (arr1: number[], arr2: number[]): number[] => {
