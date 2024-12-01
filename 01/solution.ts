@@ -20,7 +20,7 @@ const compareArrays = (arr1: number[], arr2: number[]): number => {
     return difference;
 };
 
-const findSimilarityScore = (arr1: number[], arr2: number[]): number[] => {
+const findSimilarityScores = (arr1: number[], arr2: number[]): number[] => {
     const similarityScores: number[] = [];
     for (const item of arr1) {
         const similaryScore = Math.abs(
@@ -52,5 +52,5 @@ export const star_2 = (input: string): number => {
         lineTwo.push(parseInput(line)[1]);
     }
 
-    return sumOf(findSimilarityScore(lineOne, lineTwo), (x) => x);
+    return sumOf(findSimilarityScores(lineOne, lineTwo), (x) => x);
 };
