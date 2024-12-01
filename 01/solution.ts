@@ -53,6 +53,5 @@ export const star_2 = (input: string): number => {
         lineTwo.push(parseInput(line)[1]);
     }
 
-    const a = findSimilarityScore(lineOne, lineTwo);
-    return sumOf(a, (x) => x);
+    return sumOf(findSimilarityScore(lineOne, lineTwo), (x) => x);
 };
