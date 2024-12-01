@@ -41,8 +41,7 @@ export const star_1 = (input: string): number => {
     const sortedLineOne = lineOne.sort((a, b) => a - b);
     const sortedLineTwo = lineTwo.sort((a, b) => a - b);
 
-    const totalDifference = compareArrays(sortedLineOne, sortedLineTwo);
-    return totalDifference;
+    return compareArrays(sortedLineOne, sortedLineTwo);
 };
 
 export const star_2 = (input: string): number => {
