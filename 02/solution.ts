@@ -22,23 +22,23 @@ export const star_2 = (input: string): number => {
 function parseReactorReports(
     input: number[][],
 ): { successfullReports: number[][]; failedReports: number[][] } {
-    const safeReports: number[][] = [];
+    const successfullReports: number[][] = [];
     const unsuccessfulReports: number[][] = [];
 
-    input.forEach((x) => {
+    input.forEach((line) => {
         const report: number[] = [];
-        const direction = x[0] < x[1] ? 1 : -1;
-        findAnomalies(x, report, direction);
+        const direction = line[0] < line[1] ? 1 : -1;
+        findAnomalies(line, report, direction);
         if (
-            report.length === x.length
+            report.length === line.length
         ) {
-            safeReports.push(report);
-        } else {
+            successfullReports.push(report);
+        } else if(report.length === (line.length -1)) {
             unsuccessfulReports.push(report);
         }
     });
     return {
-        successfullReports: safeReports,
+        successfullReports: successfullReports,
         failedReports: unsuccessfulReports,
     };
 }
@@ -53,6 +53,7 @@ function findAnomalies(x: number[], safeReport: number[], direction: number) {
         if (direction === 1 && num > x[numIndex + 1]) {
             return;
         }
+
         if (direction === -1 && num < x[numIndex + 1]) {
             return;
         }

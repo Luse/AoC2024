@@ -6,6 +6,7 @@
 	},
 	"tasks": {
 		"solve": "deno run --allow-read main.ts",
+		"debug": "deno run --allow-read --inspect-wait main.ts",
 		"test": "deno test --allow-read",
 		"lint": "deno lint"
 	},
