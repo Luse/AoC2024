@@ -45,26 +45,33 @@ function parseReactorReports(
 
 function findAnomalies(x: number[], safeReport: number[], direction: number) {
     x.forEach((num, numIndex) => {
-        if (numIndex === x.length - 1) {
+        const isSafe = determineSafe(num, direction, x[numIndex + 1])
+        if(isSafe){
             safeReport.push(num);
-            return;
-        }
-
-        if (direction === 1 && num > x[numIndex + 1]) {
-            return;
-        }
-
-        if (direction === -1 && num < x[numIndex + 1]) {
-            return;
-        }
-
-        if (num === x[numIndex + 1]) {
-            return;
-        }
-
-        if (Math.abs(num - x[numIndex + 1]) <= 3) {
-            safeReport.push(num);
-            return;
         }
     });
+}
+
+const determineSafe = (currentNumber: number, direction: number, nextNumber?: number): boolean => {
+    if (!nextNumber) {
+        return true
+    }
+
+    if (direction === 1 && currentNumber > nextNumber) {
+        return false
+    }
+
+    if (direction === -1 && currentNumber < nextNumber) {
+        return false
+    }
+
+    if (currentNumber === nextNumber) {
+        return false;
+    }
+
+    if (Math.abs(currentNumber - nextNumber) <= 3) {
+        return true
+    }
+
+    return false
 }

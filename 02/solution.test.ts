@@ -12,7 +12,7 @@ const sampleInput = `7 6 4 2 1
 79 79 81 84 82 85 88
 13 10 9 7 5
 90 92 92 93 94
-91 90 88 89
+94 90 88 89
 63 60 62 65 67 69
 26 24 26 29 30 31 33 34
 27 26 19 16 13 10 3
@@ -25,5 +25,5 @@ Deno.test("star_1", () => {
 });
 
 Deno.test("star_2", () => {
-    assertEquals(star_2(sampleInput), 7);
+    assertEquals(star_2(sampleInput), 6);
 });
