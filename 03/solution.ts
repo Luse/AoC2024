@@ -23,8 +23,7 @@ const exectureCommands = (input: string[]): number => {
 export const star_1 = (input: string): number => {
     const linesOfCommands = input.split('\n');
     const regex = /mul\(\d+,\d+\)/g;
-    const matches = linesOfCommands.map((line) => line.match(regex)).flat()
-        .filter((match): match is string => match !== null);
+    const matches = linesOfCommands.map((line) => line.match(regex)).flat().filter((match): match is string => match !== null);
 
     return exectureCommands(matches);
 };
