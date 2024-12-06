@@ -76,7 +76,8 @@ const predictGuardMovement = (
     }
 };
 
-export const star_1 = async (input: string): Promise<number> => {
+export const star_1 = (input: string): number => {
+    console.profile();
     const parsedInput = input.split('\n');
     const mapProperties = {
         width: parsedInput[0].length,
@@ -113,12 +114,6 @@ export const star_1 = async (input: string): Promise<number> => {
         currentGuardPosition.y >= 0 &&
         currentGuardPosition.y < mapProperties.height
     ) {
-        drawMap(
-            parsedInput.map((line) => line.split('')),
-            currentGuardPosition,
-            obstacles,
-            distinctPositions,
-        );
         if (
             !distinctPositions.some((pos) =>
                 pos.x === currentGuardPosition.x &&
@@ -134,13 +129,13 @@ export const star_1 = async (input: string): Promise<number> => {
             currentGuardPosition,
             obstacles,
         );
-        await new Promise((resolve) => setTimeout(resolve, 2));
-        console.clear();
     }
     console.log(distinctPositions.length);
     return distinctPositions.length;
 };
 
+
+
 export const star_2 = (input: string): number => {
-    return 2;
+    return 1;
 };
