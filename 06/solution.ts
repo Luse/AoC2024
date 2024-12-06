@@ -11,12 +11,11 @@ const drawMap = (
         mapCopy[obstacle.y][obstacle.x] = '#';
     });
     visited.forEach((pos) => {
-        mapCopy[pos.y][pos.x] = 'x';
+        mapCopy[pos.y][pos.x] = '\x1b[33mX\x1b[0m'; // Yellow color for great contrast against gray
     });
     mapCopy.forEach((line) => {
         console.log(line.join(''));
     });
-    console.log('---------------------');
 };
 
 type Guard = 'v' | '^' | '<' | '>';
@@ -98,10 +97,14 @@ export const star_1 = async (input: string): Promise<number> => {
             };
         }
         if (line.includes(obstacle)) {
-            obstacles.push({
-                x: line.indexOf(obstacle),
-                y: index,
-            });
+            let obstacleIndex = line.indexOf(obstacle);
+            while (obstacleIndex !== -1) {
+                obstacles.push({
+                    x: obstacleIndex,
+                    y: index,
+                });
+                obstacleIndex = line.indexOf(obstacle, obstacleIndex + 1);
+            }
         }
     });
     while (
@@ -110,8 +113,6 @@ export const star_1 = async (input: string): Promise<number> => {
         currentGuardPosition.y >= 0 &&
         currentGuardPosition.y < mapProperties.height
     ) {
-        console.log(currentGuardPosition);
-        console.log(mapProperties);
         drawMap(
             parsedInput.map((line) => line.split('')),
             currentGuardPosition,
@@ -133,9 +134,10 @@ export const star_1 = async (input: string): Promise<number> => {
             currentGuardPosition,
             obstacles,
         );
-        await new Promise((resolve) => setTimeout(resolve, 600));
+        await new Promise((resolve) => setTimeout(resolve, 2));
         console.clear();
     }
+    console.log(distinctPositions.length);
     return distinctPositions.length;
 };
 
